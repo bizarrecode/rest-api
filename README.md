@@ -1,4 +1,3 @@
-![Screenshot](https://raw.githubusercontent.com/bizarrecode/rest-api/master/src/main/resources/images/add01.png)
 
 # rest-api
 RESTful API built using Spring Boot, MySQL
@@ -32,7 +31,7 @@ Your app should now be running on [localhost:8080](http://localhost:8080/).
 ![Screenshot](https://raw.githubusercontent.com/bizarrecode/rest-api/master/src/main/resources/images/add01.png)
 ![Screenshot](https://raw.githubusercontent.com/bizarrecode/rest-api/master/src/main/resources/images/add02.png)
 
-2. Get all employee
+2. Get all employees
 
 ![Screenshot](https://raw.githubusercontent.com/bizarrecode/rest-api/master/src/main/resources/images/all01.png)
 
