@@ -1,6 +1,6 @@
 
-# rest-api
-RESTful API built using Spring Boot, MySQL
+# REST API
+RESTful API built using Spring Boot, Spring Data JPA, MySQL
 
 ## Installation<a name="installation"></a>
 ### Running Locally
