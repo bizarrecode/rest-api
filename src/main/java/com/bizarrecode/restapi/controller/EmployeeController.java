@@ -30,46 +30,56 @@ public class EmployeeController {
 
 	@RequestMapping(value = "/employees", method = RequestMethod.GET)
     public ResponseEntity<List<Employee>> listAllEmployees() throws Exception {
+		
     	logger.info("Return list of employee");
         return new ResponseEntity<List<Employee>>(employeeService.listAllEmployees(), HttpStatus.OK);
+        
     }
 	
     @RequestMapping(value = "/get-employee/{id}", method = RequestMethod.GET)
     public ResponseEntity<Employee> getEmployee(@PathVariable("id") int id) throws Exception {
+    	
     	logger.info("Employee id to return " + id);
     	Employee employee = employeeService.getEmployeeById(id);
     	if (employee == null || employee.getId() <= 0){
     		return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     	}
 		return new ResponseEntity<Employee>(employee, HttpStatus.OK);
+		
     }
 
     @RequestMapping(value = "/delete-employee/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<Response> deleteEmployee(@PathVariable("id") int id) throws Exception {
+    	
     	logger.info("Employee id to delete " + id);
     	Employee employee = employeeService.getEmployeeById(id);
     	if (employee == null || employee.getId() <= 0){
     		return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     	}
     	return new ResponseEntity<Response>(new Response(HttpStatus.OK.value(), "Employee has been deleted"), HttpStatus.OK);
+    
     }
 
     @RequestMapping(value = "/add-employee", method = RequestMethod.POST)
     public ResponseEntity<Employee> addEmployee(@RequestBody Employee employee) throws Exception {
+    	
     	logger.info("Employee to create" );
     	if (employee.getId() > 0){
     		return ResponseEntity.status(HttpStatus.CONFLICT).build();
     	}
     	return new ResponseEntity<Employee>(employeeService.saveEmployee(employee), HttpStatus.OK);
+    
     }
 
     @RequestMapping(value = "/update-employee", method = RequestMethod.PUT)
     public ResponseEntity<Employee> updateEmployee(@RequestBody Employee employee) throws Exception {
+    	
     	logger.info("Employee id to delete " + ( employee != null ? employee.getId() : ""));
     	if (employee == null || employee.getId() <= 0){
     		return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     	}
     	return new ResponseEntity<Employee>(employeeService.saveEmployee(employee), HttpStatus.OK);
+    
     }
 
 }

@@ -32,6 +32,7 @@ public class Employee {
 		this.surname = surname;
 		this.phone = phone;
 	}
+	
 	public int getId() {
 		return id;
 	}
