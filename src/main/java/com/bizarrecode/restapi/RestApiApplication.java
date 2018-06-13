@@ -17,6 +17,7 @@ public class RestApiApplication {
 	
 	@Bean
 	public CommandLineRunner setup(EmployeeRepository employeeRepository) {
+		
 		return (args) -> {
 			Employee employee = new Employee();
 			employee.setName("name");
@@ -24,5 +25,6 @@ public class RestApiApplication {
 			employee.setPhone("phone");
 			employeeRepository.save(employee);
 		};
+		
 	}
 }
