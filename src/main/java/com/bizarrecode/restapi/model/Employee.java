@@ -7,14 +7,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-/**
-* @author <a href="mailto:ekarach.kmt@gmail.com">Eakarach Kotmontri</a>
-*/
 @Entity
 @Table(name = "employee")
 public class Employee {
+	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	@Column()
 	private String name;
@@ -24,7 +22,9 @@ public class Employee {
 	private String phone;
 	
 	public Employee() {
+		super();
 	}
+	
 	public Employee(int id, String name, String surname, String phone) {
 		super();
 		this.id = id;
