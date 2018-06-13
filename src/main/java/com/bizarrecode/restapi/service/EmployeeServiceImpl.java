@@ -16,7 +16,7 @@ public class EmployeeServiceImpl implements EmployeeService{
 	
 	@Override
 	public Employee getEmployeeById(int id) {
-		return employeeRepository.findById(id).get();
+		return employeeRepository.findOne(id);
 	}
 
 	@Override
@@ -26,7 +26,7 @@ public class EmployeeServiceImpl implements EmployeeService{
 	
 	@Override
 	public void deleteEmployeeById(int id) {
-		employeeRepository.deleteById(id);
+		employeeRepository.delete(id);;
 	}
 
 	@Override

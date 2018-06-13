@@ -57,24 +57,21 @@ public class EmployeeControllerTest {
     @Test
 	public void testInvalidEmployeeArgument() throws Exception {
 		mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/employees/get-employee/f").accept(MediaType.APPLICATION_JSON))
-			.andExpect(jsonPath("$.errorCode").value(400))
-			.andExpect(jsonPath("$.message").value("Invalid argument."))
+			.andExpect(jsonPath("$.status").value(400))
 			.andDo(print());
 	}
 	
     @Test
 	public void testInvalidEmployeeId() throws Exception {
 		mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/employees/get-employee/0").accept(MediaType.APPLICATION_JSON))
-		.andExpect(jsonPath("$.errorCode").value(404))
-		.andExpect(jsonPath("$.message").value("Employee doesn´t exist"))
+		.andExpect(jsonPath("$.status").value(404))
 		.andDo(print());
 	}
     
     @Test
 	public void testNullEmployee() throws Exception {
 		mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/employees/get-employee/7").accept(MediaType.APPLICATION_JSON))
-		.andExpect(jsonPath("$.errorCode").value(404))
-		.andExpect(jsonPath("$.message").value("Employee doesn´t exist"))
+		.andExpect(jsonPath("$.status").value(404))
 		.andDo(print());
 	}
     
@@ -82,15 +79,13 @@ public class EmployeeControllerTest {
 	public void testDeleteEmployee() throws Exception {
 		mockMvc.perform(MockMvcRequestBuilders.delete("/api/v1/employees/delete-employee/1").accept(MediaType.APPLICATION_JSON))
 		.andExpect(jsonPath("$.status").value(200))
-		.andExpect(jsonPath("$.message").value("Employee has been deleted"))
 		.andDo(print());
 	}
     
     @Test
 	public void testInvalidEmployeeIdToDelete() throws Exception {
 		mockMvc.perform(MockMvcRequestBuilders.delete("/api/v1/employees/delete-employee/7").accept(MediaType.APPLICATION_JSON))
-		.andExpect(jsonPath("$.errorCode").value(404))
-		.andExpect(jsonPath("$.message").value("Employee to delete doesn´t exist"))
+		.andExpect(jsonPath("$.status").value(404))
 		.andDo(print());
 	}
 
@@ -100,11 +95,9 @@ public class EmployeeControllerTest {
         .contentType(MediaType.APPLICATION_JSON)
         .content("{\"name\" : \"name2\", \"surname\" : \"surname2\", \"phone\" : \"phone2\" }")
 		.accept(MediaType.APPLICATION_JSON))
-		.andExpect(jsonPath("$.id").exists())
 		.andExpect(jsonPath("$.name").exists())
 		.andExpect(jsonPath("$.surname").exists())
 		.andExpect(jsonPath("$.phone").exists())
-		.andExpect(jsonPath("$.id").value(2))
 		.andExpect(jsonPath("$.name").value("name2"))
 		.andExpect(jsonPath("$.surname").value("surname2"))
 		.andExpect(jsonPath("$.phone").value("phone2"))
@@ -115,7 +108,7 @@ public class EmployeeControllerTest {
 	public void testUpdateEmployee() throws Exception {
 		mockMvc.perform(MockMvcRequestBuilders.patch("/api/v1/employees/update-employee/")
         .contentType(MediaType.APPLICATION_JSON)
-        .content("{ \"id\": \"2\", \"name\" : \"new name\", \"surname\" : \"new surname\", \"phone\" : \"new phone\" }")
+        .content("{ \"id\": \"1\", \"name\" : \"new name\", \"surname\" : \"new surname\", \"phone\" : \"new phone\" }")
         .accept(MediaType.APPLICATION_JSON))
 		.andExpect(jsonPath("$.id").exists())
 		.andExpect(jsonPath("$.name").exists())
@@ -132,10 +125,9 @@ public class EmployeeControllerTest {
 	public void testInvalidEmployeeUpdate() throws Exception {
 		mockMvc.perform(MockMvcRequestBuilders.patch("/api/v1/employees/update-employee/")
         .contentType(MediaType.APPLICATION_JSON)
-       .content("{ \"id\": \"7\", \"name\" : \"name7\", \"surname\" : \"surname7\", \"phone\" : \"phone7\" }")
+        .content("{ \"id\": \"7\", \"name\" : \"name7\", \"surname\" : \"surname7\", \"phone\" : \"phone7\" }")
 		.accept(MediaType.APPLICATION_JSON))
-		.andExpect(jsonPath("$.errorCode").value(404))
-		.andExpect(jsonPath("$.message").value("Employee to update doesn´t exist"))
+		.andExpect(jsonPath("$.status").value(404))
 		.andDo(print());
 	}
 
